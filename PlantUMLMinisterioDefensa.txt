@@ -1,0 +1,89 @@
+@startuml
+' Estilo opcional
+skinparam classAttributeIconSize 0
+skinparam classFontSize 12
+skinparam classAttributeFontSize 11
+
+'==================== CLASES ====================
+class Soldado {
+  -codigo : String
+  -nombre : String
+  -apellidos : String
+  -graduacion : String
+  +getCodigo() : String
+  +setCodigo(String) : void
+  +getNombre() : String
+  +setNombre(String) : void
+  +getApellidos() : String
+  +setApellidos(String) : void
+  +getGraduacion() : String
+  +setGraduacion(String) : void
+}
+
+class Cuerpo {
+  -codigo : String
+  -denominacion : String
+  +getCodigo() : String
+  +setCodigo(String) : void
+  +getDenominacion() : String
+  +setDenominacion(String) : void
+}
+
+class Compania {
+  -numero : int
+  -actividadPrincipal : String
+  +getNumero() : int
+  +setNumero(int) : void
+  +getActividadPrincipal() : String
+  +setActividadPrincipal(String) : void
+}
+
+class Cuartel {
+  -codigo : String
+  -nombre : String
+  -ubicacion : String
+  +getCodigo() : String
+  +setCodigo(String) : void
+  +getNombre() : String
+  +setNombre(String) : void
+  +getUbicacion() : String
+  +setUbicacion(String) : void
+}
+
+class Servicio {
+  -codigo : String
+  -descripcion : String
+  +getCodigo() : String
+  +setCodigo(String) : void
+  +getDescripcion() : String
+  +setDescripcion(String) : void
+}
+
+class RealizacionServicio {
+  -fecha : Date
+  +getFecha() : Date
+  +setFecha(Date) : void
+}
+
+'==================== RELACIONES ====================
+
+'Soldado pertenece a un único Cuerpo
+Soldado "1" --> "1" Cuerpo : pertenece a
+
+'Soldado pertenece a una única Compañía
+Soldado "1" --> "1" Compania : asignado a
+
+'Soldado está en un único Cuartel
+Soldado "1" --> "1" Cuartel : destinado en
+
+'Compañía está en varios cuarteles y viceversa
+Compania "1" o-- "*" Cuartel : desplegada en
+
+'Relación muchos a muchos entre Soldado y Servicio con fecha
+Soldado "1" o-- "*" RealizacionServicio
+Servicio "1" o-- "*" RealizacionServicio
+
+@enduml
+
+
+
